@@ -11,12 +11,10 @@ export const chatSlice = createSlice({
 	},
 	reducers: {
 		addThought: (state, action) => {
-			return {
-				...state,
-				thought: action.payload.thought,
-				actions: action.payload.actions,
-				steps: action.payload.steps
-			};
+			state.thought = action.payload.thought;
+			state.actions = action.payload.actions;
+			state.steps = action.payload.steps;
+			state.messages = action.payload.messages;
 		},
 		addMessage: (state, action) => {
 			state.history.push(action.payload);
