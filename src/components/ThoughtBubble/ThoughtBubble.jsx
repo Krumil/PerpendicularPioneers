@@ -18,12 +18,21 @@ const AnimatedThought = () => {
 		}
 	};
 
+	// setInterval(() => {
+	// 	// generate random string
+	// 	const randomString = Math.random().toString(36).substring(7);
+	// 	const actions = [];
+	// 	const steps = [];
+	// 	const messages = [];
+	// 	dispatch(addThought({ thought: randomString, actions: actions, steps: steps, messages: messages }));
+	// }, 3000);
+
 	return (
-		<div className='mx-auto bg-white rounded-lg shadow-md overflow-hidden w-9/12 p-4 mt-10'>
+		<div className='mx-auto bg-white rounded-lg shadow-md overflow-hidden w-9/12 py-2 mt-10'>
 			<AnimatePresence mode='wait'>
 				<motion.div
 					key={thought}
-					className='p-8'
+					className='p-3'
 					variants={textVariants}
 					initial='hidden'
 					animate='visible'

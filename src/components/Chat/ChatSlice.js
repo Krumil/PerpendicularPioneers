@@ -7,7 +7,8 @@ export const chatSlice = createSlice({
 		thought: "I'm thinking...",
 		actions: [],
 		steps: [],
-		messages: []
+		messages: [],
+		audio: null
 	},
 	reducers: {
 		addThought: (state, action) => {
@@ -15,6 +16,7 @@ export const chatSlice = createSlice({
 			state.actions = action.payload.actions;
 			state.steps = action.payload.steps;
 			state.messages = action.payload.messages;
+			state.audio = action.payload.audio;
 		},
 		addMessage: (state, action) => {
 			state.history.push(action.payload);

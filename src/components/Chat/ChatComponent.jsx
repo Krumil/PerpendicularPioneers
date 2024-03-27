@@ -10,7 +10,7 @@ function ChatComponent() {
 	const [message, setMessage] = useState("");
 	const [isPlaying, setIsPlaying] = useState(false);
 	// const chatHistory = useSelector(state => state.chat.history);
-	const selectedAvatar = useSelector(state => state.avatars.selectedAvatar); // Ensure this is the correct path
+	const selectedAvatar = useSelector(state => state.avatars.selectedAvatar);
 	const dispatch = useDispatch();
 
 	const handleSubmit = e => {
@@ -76,7 +76,7 @@ function ChatComponent() {
 						{playButton({ isPlaying, togglePlay })}
 					</div>
 				)}
-				<ThoughtBubble />
+				{isPlaying && <ThoughtBubble />}
 			</div>
 
 			<Input
