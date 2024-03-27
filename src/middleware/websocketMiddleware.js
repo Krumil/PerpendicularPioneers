@@ -1,4 +1,4 @@
-import { addMessage } from "../components/Chat/ChatSlice";
+import { addMessage, addThought } from "../components/Chat/ChatSlice";
 import { setAvatars } from "../components/AvatarSelector/AvatarSlice";
 
 function sendMessage(socket, message) {
@@ -28,6 +28,10 @@ export const websocketMiddleware = store => next => action => {
 
 			window.socket.onmessage = event => {
 				const data = JSON.parse(event.data);
+				if (!data) {
+					return;
+				}
+
 				if (data.type === "avatar") {
 					store.dispatch(setAvatars(data.data.avatars));
 				} else if (data.type === "internal_thought") {
@@ -37,9 +41,8 @@ export const websocketMiddleware = store => next => action => {
 					console.log("Actions:", actions);
 					console.log("Message:", messages.content);
 					console.log("Steps:", steps);
-					if (messages.length > 0) {
-						store.dispatch(addMessage({ ai: messages.content }));
-					}
+
+					store.dispatch(addThought({ thought: messages.content, actions, steps, messages }));
 				} else {
 					const response = JSON.parse(event.data);
 					store.dispatch(addMessage({ ai: response.output }));
