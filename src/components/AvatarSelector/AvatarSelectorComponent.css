@@ -1,0 +1,15 @@
+.clamp-5 {
+	display: -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.avatar-card {
+	transition: box-shadow 0.3s ease 0s, transform 0.3s ease 0s;
+}
+
+.avatar-card:hover {
+	transform: scale(1.05);
+}
