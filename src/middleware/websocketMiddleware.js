@@ -1,4 +1,4 @@
-import { addMessage, addThought } from "../components/Chat/ChatSlice";
+import { addMessage, changeLastAnswer, changeActions, changeThought } from "../components/Chat/ChatSlice";
 import { setAvatars } from "../components/AvatarSelector/AvatarSlice";
 
 function sendMessage(socket, message) {
@@ -38,11 +38,21 @@ export const websocketMiddleware = store => next => action => {
 					const actions = JSON.parse(data.action).length > 0 ? JSON.parse(JSON.parse(data.action)[0]) : null;
 					const messages = JSON.parse(data.messages) ? JSON.parse(JSON.parse(data.messages)) : [];
 					const steps = JSON.parse(data.steps) ? JSON.parse(data.steps) : [];
+					const audio = data.audio ? data.audio : null;
 					console.log("Actions:", actions);
 					console.log("Message:", messages.content);
 					console.log("Steps:", steps);
 
-					store.dispatch(addThought({ thought: messages.content, actions, steps, messages }));
+					if (steps.length === 0 && messages.content) {
+						const thought = messages.content;
+						store.dispatch(changeThought({ thought: thought }));
+					}
+
+					if (actions) {
+						store.dispatch(changeActions({ actions: actions }));
+					}
+
+					store.dispatch(changeLastAnswer({ steps, messages, audio: audio }));
 				} else {
 					const response = JSON.parse(event.data);
 					store.dispatch(addMessage({ ai: response.output }));

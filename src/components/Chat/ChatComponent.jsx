@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addMessage } from "./ChatSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,9 +9,19 @@ import ThoughtBubble from "../ThoughtBubble/ThoughtBubble";
 function ChatComponent() {
 	const [message, setMessage] = useState("");
 	const [isPlaying, setIsPlaying] = useState(false);
-	// const chatHistory = useSelector(state => state.chat.history);
+	// const history = useSelector(state => state.chat.history);
 	const selectedAvatar = useSelector(state => state.avatars.selectedAvatar);
+	const thought = useSelector(state => state.chat.thought);
+	const audioUrl = useSelector(state => state.chat.audio);
+	const audioRef = useRef(null);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (audioUrl && audioRef.current) {
+			audioRef.current.src = audioUrl;
+			audioRef.current.play().catch(error => console.error("Audio playback failed", error));
+		}
+	}, [audioUrl]);
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -76,7 +86,7 @@ function ChatComponent() {
 						{playButton({ isPlaying, togglePlay })}
 					</div>
 				)}
-				{isPlaying && <ThoughtBubble />}
+				{isPlaying && thought && <ThoughtBubble />}
 			</div>
 
 			<Input

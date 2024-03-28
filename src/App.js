@@ -14,7 +14,7 @@ function App() {
 
 	return (
 		<div className='App min-h-screen flex flex-col dark bg-white dark:bg-neutral-800'>
-			<div className='flex flex-col md:w-6/12 md:mx-auto w-full px-4 flex-1'>
+			<div className='flex flex-col md:w-7/12 md:mx-auto w-full px-4 flex-1'>
 				<div className='w-full bg-transparent text-white my-10'>
 					<div className='text-4xl font-bold'>Perpendicular Pioneers</div>
 				</div>

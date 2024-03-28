@@ -1,8 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
+// import { changeThought } from "../Chat/ChatSlice";
 
 const AnimatedThought = () => {
 	const thought = useSelector(state => state.chat.thought);
+	const actions = useSelector(state => state.chat.actions);
+	// const dispatch = useDispatch();
 
 	const textVariants = {
 		hidden: { opacity: 0, y: 20 },
@@ -21,10 +24,10 @@ const AnimatedThought = () => {
 	// setInterval(() => {
 	// 	// generate random string
 	// 	const randomString = Math.random().toString(36).substring(7);
-	// 	const actions = [];
-	// 	const steps = [];
-	// 	const messages = [];
-	// 	dispatch(addThought({ thought: randomString, actions: actions, steps: steps, messages: messages }));
+	// 	// const actions = [];
+	// 	// const steps = [];
+	// 	// const messages = [];
+	// 	dispatch(changeThought({ thought: randomString }));
 	// }, 3000);
 
 	return (
@@ -37,6 +40,7 @@ const AnimatedThought = () => {
 					initial='hidden'
 					animate='visible'
 					exit='exit'>
+					{actions && <div className='text-red-900'>Using Tool: {actions.tool}</div>}
 					<div className='tracking-tight'>
 						<span className='text-lg leading-relaxed text-gray-900'>{thought}</span>
 					</div>

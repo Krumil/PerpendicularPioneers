@@ -15,10 +15,10 @@ function AvatarSelector() {
 
 	return (
 		<div className='grow flex flex-col justify-center items-center w-full dark:text-white'>
-			<div className={`grid "grid-cols-1 md:grid-cols-2 gap-6 my-4 w-full max-w-5xl`}>
+			<div className={`grid "grid-cols-1 md:grid-cols-2 gap-6 my-4 w-full`}>
 				{avatars.map((avatar, index) => (
 					<div
-						className={`avatar-card rounded-lg overflow-hidden shadow-lg p-4 cursor-pointer dark:bg-neutral-700 border-2  ${
+						className={`rounded-lg overflow-hidden shadow-lg p-4 cursor-pointer dark:bg-neutral-700 border-2  ${
 							selectedAvatar === avatar ? "border-white w-full" : "border-transparent"
 						}`}
 						onClick={() => handleAvatarClick(index)}
@@ -27,7 +27,7 @@ function AvatarSelector() {
 							<img className='w-48 h-48 rounded self-center' src={avatar.portrait} alt={avatar.name} />
 							<div className='px-4'>
 								<div className='font-bold text-xl mb-2'>{avatar.name}</div>
-								<p className='text-white clamp-5'>{avatar.system}</p>
+								<p className='text-white clamp-5'>{avatar.description}</p>
 							</div>
 						</div>
 					</div>

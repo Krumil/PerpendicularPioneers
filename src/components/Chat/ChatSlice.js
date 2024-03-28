@@ -11,9 +11,13 @@ export const chatSlice = createSlice({
 		audio: null
 	},
 	reducers: {
-		addThought: (state, action) => {
+		changeThought: (state, action) => {
 			state.thought = action.payload.thought;
+		},
+		changeActions: (state, action) => {
 			state.actions = action.payload.actions;
+		},
+		changeLastAnswer: (state, action) => {
 			state.steps = action.payload.steps;
 			state.messages = action.payload.messages;
 			state.audio = action.payload.audio;
@@ -24,6 +28,6 @@ export const chatSlice = createSlice({
 	}
 });
 
-export const { addMessage, addThought } = chatSlice.actions;
+export const { changeThought, changeActions, changeLastAnswer, addMessage } = chatSlice.actions;
 
 export default chatSlice.reducer;
