@@ -40,7 +40,11 @@ const AnimatedThought = () => {
 					initial='hidden'
 					animate='visible'
 					exit='exit'>
-					{actions && <div className='text-red-900'>Using Tool: {actions.tool}</div>}
+					{actions && (
+						<div className='text-red-900'>
+							Using Tool: {actions.tool} with parameters: {JSON.stringify(actions.tool_input)}
+						</div>
+					)}
 					<div className='tracking-tight'>
 						<span className='text-lg leading-relaxed text-gray-900'>{thought}</span>
 					</div>

@@ -5,7 +5,7 @@ export const chatSlice = createSlice({
 	initialState: {
 		history: [],
 		thought: "I'm thinking...",
-		actions: [],
+		actions: {},
 		steps: [],
 		messages: [],
 		audio: null
